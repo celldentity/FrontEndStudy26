@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>반응형 이미지 최적화</title>
+ <style>
+ .hero-image {
+ width: 100%;
+ height: auto;
+ display: block;
+ margin: 0 auto;
+ }
+
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+ }
+    .lazy-image {
+ width: 100%;
+ height: 300px;
+ background-color: #f0f0f0;
+ margin-bottom: 20px;
+ opacity: 0;
+ transition: opacity 0.3s ease;
+ }
+
+ .lazy-image.loaded {
+ opacity: 1;
+ }
+
+ .placeholder {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: #666;
+ font-size: 14px;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <h1>반응형 이미지 예제</h1>
+
+ <!-- 기본 반응형 이미지 -->
+ <img src="hero-mobile.jpg"
+ srcset="hero-mobile.jpg 480w,
+ hero-tablet.jpg 768w,
+ hero-desktop.jpg 1200w"
+ sizes="(max-width: 480px) 100vw,
+ (max-width: 768px) 100vw,
+ 1200px"
+ alt="메인 히어로 이미지"
+ class="hero-image">
+ </div>
+<div class="container">
+ <h2>지연 로딩 이미지들</h2>
+
+ <!-- 지연 로딩될 이미지들 -->
+ <img class="lazy-image placeholder"
+ data-src="image1.jpg"
+ alt="이미지 1">
+
+ <img class="lazy-image placeholder"
+ data-src="image2.jpg"
+ alt="이미지 2">
+
+ <img class="lazy-image placeholder"
+ data-src="image3.jpg"
+ alt="이미지 3">
+</div>
+
+<script>
+// Intersection Observer를 사용한 지연 로딩
+const lazyImages = document.querySelectorAll('.lazy-image');
+
+const imageObserver = new IntersectionObserver((entries, observer) => {
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ const img = entry.target;
+ const src = img.getAttribute('data-src');
+
+ // 실제 이미지 로드
+ img.src = src;
+ img.classList.add('loaded');
+ img.classList.remove('placeholder');
+
+ // 관찰 중단
+ observer.unobserve(img);
+ }
+ });
+});
+
+// 모든 지연 로딩 이미지 관찰 시작
+lazyImages.forEach(img => imageObserver.observe(img));
+</script>
+</body>
+</html>

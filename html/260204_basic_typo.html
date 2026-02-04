@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>반응형 타이포그래피</title>
+ <style>
+ /* 기본 설정 */
+ html {
+ font-size: 16px; /* 1rem = 16px */
+ }
+
+ body {
+ font-family: 'Malgun Gothic', sans-serif;
+ line-height: 1.6;
+ margin: 0;
+ padding: 2rem;
+ }
+
+ /* 제목 스타일 */
+ h1 {
+ font-size: 2.5rem; /* 40px */
+ margin-bottom: 1rem;
+ }
+
+ h2 {
+ font-size: 2rem; /* 32px */
+ margin-bottom: 0.8rem;
+ }
+
+ h3 {
+ font-size: 1.5rem; /* 24px */
+ margin-bottom: 0.6rem;
+ }
+
+ /* 본문 스타일 */
+ p {
+ font-size: 1rem; /* 16px */
+ margin-bottom: 1rem;
+ }
+
+ /* 모바일 대응 */
+ @media (max-width: 768px) {
+ html {
+ font-size: 14px; /* 모든 rem 크기가 비례적으로 줄어듦 */
+ }
+
+ body {
+ padding: 1rem;
+ }
+ }
+
+ /* 태블릿 대응 */
+ @media (min-width: 769px) and (max-width: 1024px) {
+ html {
+ font-size: 15px;
+ }
+ }
+ </style>
+</head>
+<body>
+ <article>
+ <h1>웹 개발의 즐거움</h1>
+ <h2>반응형 디자인이란?</h2>
+ <p>반응형 디자인은 다양한 화면 크기에 맞춰 자동으로 레이아웃이 조절되는 웹 디자인 기법입니다.</p>
+
+ <h3>타이포그래피의 중요성</h3>
+ <p>좋은 타이포그래피는 사용자 경험을 크게 향상시킵니다. 읽기 쉬운 글자 크기와 적절한 줄 간격이 핵심입니다.</p>
+ </article>
+</body>
+</html>

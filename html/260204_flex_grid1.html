@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그리드 시스템 레이아웃</title>
+    <style>
+        /* 1. 기본 초기화 및 타이포그래피 */
+        :root {
+            font-family: 'Pretendard', sans-serif;
+            --primary-color: #3498db;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3 {
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: #555;
+        }
+
+        /* 2. 그리드 시스템 (Grid System) */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 15px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap; /* 컬럼이 넘치면 다음 줄로 */
+            margin: 0 -15px; /* 양쪽 끝 패딩 상쇄 */
+        }
+
+        /* 컬럼 공통 스타일 */
+        [class*="col-"] {
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        /* 컬럼 크기 정의 */
+        .col-1 { width: 8.333%; }
+        .col-2 { width: 16.666%; }
+        .col-3 { width: 25%; }
+        .col-4 { width: 33.333%; }
+        .col-6 { width: 50%; }
+        .col-8 { width: 66.666%; }
+        .col-12 { width: 100%; }
+
+        /* 3. 카드 컴포넌트 (이전 단계 스타일 통합) */
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5em;
+            margin-bottom: 2rem;
+            height: calc(100% - 2rem); /* 같은 높이 유지를 위한 설정 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* 4. 반응형 조정 (Media Queries) */
+        @media (max-width: 768px) {
+            /* 태블릿: 3등분(col-4)을 2등분으로 */
+            .col-4 { width: 50%; }
+            /* 메인과 사이드바도 각각 한 줄씩 차지하도록 조정 */
+            .col-8 { width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            /* 모바일: 모든 컬럼을 100%로 */
+            .col-4, .col-6, .col-8 { width: 100%; }
+
+            .container { padding-top: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>반응형 그리드 레이아웃</h1>
+    <p style="margin-bottom: 3rem;">화면 너비를 줄여보세요. 컬럼들이 유동적으로 재배치됩니다.</p>
+
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <h2>메인 콘텐츠 영역 (col-8)</h2>
+                <p>이곳은 전체 12칸 중 8칸을 차지하는 메인 영역입니다. 텍스트 데이터나 주요 게시물이 들어오기에 적합합니다. <code>display: flex</code> 기반으로 작동하므로 옆의 사이드바와 높이가 나란히 배치됩니다.</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" style="background-color: #fdfdfd;">
+                <h3>사이드바 (col-4)</h3>
+                <p>부가 정보나 광고, 카테고리 링크가 들어가는 사이드바 영역입니다.</p>
+                <div style="background:#eee; height:100px; border-radius:4px; display:flex; align-items:center; justify-content:center;">AD 영역</div>
+            </div>
+        </div>
+    </div>

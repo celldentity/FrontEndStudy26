@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox 3단 레이아웃 실습</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* 작성하신 레이아웃 스타일 */
+        .layout {
+            display: flex;
+            gap: 20px;
+            min-height: 500px;
+        }
+
+        .sidebar {
+            flex: 0 0 200px; /* 늘어나지도 줄어들지도 않는 고정 200px */
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .content {
+            flex: 1; /* 가변 너비: 남은 공간을 혼자 모두 독점 */
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dcdde1;
+        }
+
+        .ads {
+            flex: 0 0 150px; /* 고정 크기 150px */
+            background: #e67e22;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        /* 반응형 추가: 화면이 좁아지면 세로로 나열 */
+        @media (max-width: 768px) {
+            .layout {
+                flex-direction: column;
+            }
+            .sidebar, .ads {
+                flex: 0 0 auto; /* 모바일에서는 고정 너비 해제 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <h3>메뉴</h3>
+            <ul>
+                <li>대시보드</li>
+                <li>프로필</li>
+                <li>설정</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>메인 콘텐츠</h1>
+            <p>여기에 주요 내용이 들어갑니다. <strong>flex: 1</strong> 속성 덕분에 브라우저 창의 너비를 조절해도 이 영역이 유동적으로 늘어납니다.</p>
+            <p>좌우의 사이드바와 광고 영역은 고정된 너비를 유지하며 레이아웃의 틀을 잡아줍니다.</p>
+        </main>
+
+        <aside class="ads">
+            <h4>광고</h4>
+            <div style="height: 100px; background: rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center;">
+                AD AREA
+            </div>
+            <p style="font-size: 12px; margin-top: 10px;">추천 상품 목록이 여기에 표시됩니다.</p>
+        </aside>
+    </div>
+
+</body>
+</html>

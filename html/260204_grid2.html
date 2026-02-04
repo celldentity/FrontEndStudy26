@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid 레이아웃 연습</title>
+    <style>
+        /* 기본 여백 초기화 */
+        body {
+            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            background-color: #e9ecef;
+        }
+
+        /* 작성하신 그리드 스타일 */
+        .website-layout {
+            display: grid;
+            /* 열: 200px(고정), 1fr(나머지 전부), 150px(고정) */
+            grid-template-columns: 200px 1fr 150px;
+            /* 행: 80px(헤더), 1fr(본문), 60px(푸터) */
+            grid-template-rows: 80px 1fr 60px;
+            gap: 10px;
+            height: 100vh; /* 화면 전체 높이 사용 */
+            padding: 10px;
+            box-sizing: border-box; /* 패딩이 전체 높이에 영향을 주지 않도록 설정 */
+        }
+
+        .header {
+            grid-column: 1 / -1; /* 모든 열 차지 */
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-radius: 5px;
+        }
+
+        .sidebar {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .main-content {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-y: auto; /* 내용이 길어지면 본문만 스크롤 */
+        }
+
+        .ads {
+            background-color: #ffe6e6;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .footer {
+            grid-column: 1 / -1; /* 모든 열 차지 */
+            background-color: #666;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+        }
+
+        h3, h1 { margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="website-layout">
+        <header class="header">
+            <h2>My Grid Website</h2>
+        </header>
+
+        <aside class="sidebar">
+            <h3>메뉴</h3>
+            <ul style="line-height: 2;">
+                <li>메뉴 1</li>
+                <li>메뉴 2</li>
+                <li>메뉴 3</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>메인 콘텐츠</h1>
+            <p>CSS Grid를 사용하면 복잡한 2차원 레이아웃을 매우 직관적으로 설계할 수 있습니다.</p>
+            <p><strong>1fr</strong> 단위는 'Fraction'의 약자로, 고정된 크기(px)를 제외한 나머지 가용 공간을 비례에 맞춰 나누어 갖습니다.</p>
+        </main>
+
+        <aside class="ads">
+            <p>광고 영역</p>
+            <div style="background:#ddd; height:150px; margin-top:10px;">BANNER</div>
+        </aside>
+
+        <footer class="footer">
+            <p>&copy; 2026 웹사이트 레이아웃 실습. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

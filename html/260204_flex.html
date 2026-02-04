@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex 속성 실습</title>
+    <style>
+        /* 기본 컨테이너 */
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border: 2px solid #333;
+            margin: 20px;
+        }
+
+        /* 심화 컨테이너 (flex-grow/shrink 테스트용) */
+        .advanced-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border: 2px solid #e74c3c;
+            margin: 20px;
+            width: 800px; /* 고정 너비로 수축/팽창 확인 */
+            background-color: #fff5f5;
+        }
+
+        /* 카드 기본 공통 스타일 */
+        .advanced-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* 1:1:100px - 보통 속도로 커지고 보통 속도로 작아짐 */
+        .advanced-card1 {
+            flex: 1 1 100px;
+        }
+        /* 2:1:200px - 다른 요소보다 2배 더 빨리 커짐 */
+        .advanced-card2 {
+            flex: 2 1 200px;
+        }
+        /* 1:2:150px - 공간이 부족할 때 다른 요소보다 2배 더 빨리 작아짐 */
+        .advanced-card3 {
+            flex: 1 2 150px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>1. 기본 Flex 컨테이너</h2>
+    <div class="container">
+        <div class="advanced-card">카드 1<br>간단한 내용</div>
+        <div class="advanced-card">카드 2<br>보통 내용입니다</div>
+        <div class="advanced-card">카드 3<br>짧음</div>
+    </div>
+
+    <h2>2. Flex 심화 (Grow, Shrink, Basis)</h2>
+    <p>컨테이너의 너비가 800px일 때 각 카드가 어떻게 비중을 나누어 갖는지 확인하세요.</p>
+    <div class="advanced-container">
+        <div class="advanced-card advanced-card1">Card 1<br>(Grow: 1)</div>
+        <div class="advanced-card advanced-card2">Card 2<br>(Grow: 2)</div>
+        <div class="advanced-card advanced-card3">Card 3<br>(Shrink: 2)</div>
+    </div>
+
+</body>
+</html>
